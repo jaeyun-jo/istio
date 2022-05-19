@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-ingressgateway
+  namespace: istio-system
+  annotations:
+    #service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
+    #service.beta.kubernetes.io/aws-load-balancer-type: alb
+    #service.beta.kubernetes.io/subnets: "us-west-2b","us-west-2a","us-west-2c"
+    #service.beta.kubernetes.io/scheme: "internet-facing"
+    #service.beta.kubernetes.io/aws-load-balancer-access-log-enabled: true
+    #service.beta.kubernetes.io/aws-load-balancer-access-log-emit-interval: 60
+    #service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-name: s3-logs-elb-logs-kube-staging
+    #service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-prefix: saturn
+    #service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-name: "s3-logs-elb-logs-kube-staging"
+    #service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-prefix: "saturn"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:us-west-*"
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "3600"
+  labels:
+    app: istio-ingressgateway
+    release: istio
+    istio: ingressgateway
+spec:
+  #type: NodePort
+  type: LoadBalancer
+  selector:
+    app: istio-ingressgateway
+  ports:
+  - name: http
+    port: 80
+  #   targetPort: 8083
+  - name: https
+    port: 443
+  #   targetPort: 8083
+
+
+    # istio-ingressgateway   LoadBalancer   10.108.168.122   localhost     15021:30918/TCP,80:31218/TCP,443:32497/TCP,31400:32045/TCP,15443:30750/TCP   11d
+# 80:31218/TCP,443:32271/TCP 
+# 80:31218/TCP,443:32497/TCP              14d

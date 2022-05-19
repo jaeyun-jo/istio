@@ -1,0 +1,4 @@
+appname: account
+image: docker.io/jaeyunjo/account:0.0.1
+containerPort: 8080
+replicas: 1

@@ -1,0 +1,4 @@
+appname: api
+image: docker.io/jaeyunjo/api:0.0.1
+containerPort: 8080
+replicas: 1

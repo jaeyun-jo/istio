@@ -1,0 +1,39 @@
+curl -v -HHost:192.168.219.104.sslip.io \
+--cacert ca.crt "https://192.168.219.104.sslip.io:443/treatments/1"
+
+
+
+kubectl create -n istio-system secret tls ca-credential --key=ca.key --cert=ca.crt
+
+
+
+curl -v -HHost:h192.168.219.104.sslip.io --cacert ca.crt "http://192.168.219.104.sslip.io/treatments/1"
+
+
+openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -subj '/O=example Inc./CN=192.168.219.104.sslip.io' -keyout demo.key -out demo.crt
+
+
+
+
+openssl x509 -req -sha256 -days 365 -CA ca.crt -CAkey ca.key -set_serial 0 -in demo.csr -out demo.crt
+
+
+kubectl create -n istio-system secret tls demo-credential --key=demo.key --cert=demo.crt
+
+
+curl -v -HHost:192.168.219.104.sslip.io --cacert ca.crt "http://192.168.219.104.sslip.io/treatments/1"
+
+curl -vv --cacert ca.crt "https://192.168.219.104.sslip.io/treatments/1"
+
+
+
+openssl req -out demo.csr -newkey rsa:2048 -nodes -keyout demo.key -subj "/CN=192.168.219.104.sslip.io/O=linedoctor"
+openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -subj '/O=linedoctor Inc./CN=192.168.219.104.sslip.io' -keyout root.key -out root.crt
+openssl x509 -req -sha256 -days 365 -CA root.crt -CAkey root.key -set_serial 0 -in demo.csr -out demo.crt
+kubectl create -n istio-system secret tls demo-credential --key=demo.key --cert=demo.crt
+
+curl -vv --cacert root.crt "https://192.168.219.104.sslip.io/treatments/1"
+
+
+ dk push jaeyunjo/api:0.0.1 
+  dk build -t jaeyunjo/api:0.0.1 .

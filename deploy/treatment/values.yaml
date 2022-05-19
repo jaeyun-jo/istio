@@ -1,0 +1,4 @@
+appname: treatment
+image: docker.io/jaeyunjo/treatment:0.0.1
+containerPort: 8080
+replicas: 1

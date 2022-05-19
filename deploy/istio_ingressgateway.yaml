@@ -1,0 +1,100 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"service.beta.kubernetes.io/aws-load-balancer-backend-protocol":"http","service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout":"3600","service.beta.kubernetes.io/aws-load-balancer-ssl-cert":"arn:aws:acm:us-west-*","service.beta.kubernetes.io/aws-load-balancer-ssl-ports":"https"},"labels":{"app":"istio-ingressgateway","istio":"ingressgateway","release":"istio"},"name":"istio-ingressgateway","namespace":"istio-system"},"spec":{"ports":[{"name":"http","port":80,"targetPort":8083},{"name":"https","port":443,"targetPort":8083}],"selector":{"app":"istio-ingressgateway"},"type":"LoadBalancer"}}
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "3600"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-west-*
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: https
+  creationTimestamp: "2022-01-29T14:00:19Z"
+  labels:
+    app: istio-ingressgateway
+    istio: ingressgateway
+    release: istio
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          f:app: {}
+          f:istio: {}
+          f:release: {}
+      f:spec:
+        f:ports:
+          k:{"port":80,"protocol":"TCP"}:
+            .: {}
+            f:port: {}
+            f:protocol: {}
+        f:type: {}
+    manager: istio-operator
+    operation: Apply
+    time: "2022-01-29T14:00:19Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:loadBalancer:
+          f:ingress: {}
+    manager: kube-vpnkit-forwarder
+    operation: Update
+    subresource: status
+    time: "2022-01-29T14:00:19Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+          f:service.beta.kubernetes.io/aws-load-balancer-backend-protocol: {}
+          f:service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: {}
+          f:service.beta.kubernetes.io/aws-load-balancer-ssl-cert: {}
+          f:service.beta.kubernetes.io/aws-load-balancer-ssl-ports: {}
+      f:spec:
+        f:ports:
+          k:{"port":80,"protocol":"TCP"}:
+            f:name: {}
+            f:targetPort: {}
+          k:{"port":443,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector: {}
+    manager: kubectl
+    operation: Update
+    time: "2022-02-12T07:03:16Z"
+  name: istio-ingressgateway
+  namespace: istio-system
+  resourceVersion: "678389"
+  uid: e6f38e9a-6c12-45fd-84b3-34e07361f36f
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.108.168.122
+  clusterIPs:
+  - 10.108.168.122
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http
+    nodePort: 31218
+    port: 80
+    protocol: TCP
+  - name: https
+    nodePort: 32497
+    port: 443
+    protocol: TCP
+  selector:
+    app: istio-ingressgateway
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - hostname: localhost

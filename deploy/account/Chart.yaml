@@ -1,0 +1,3 @@
+apiVersion: v2
+name: telemedicine-charts
+version: 0.0.1
