@@ -18,5 +18,3 @@
 
 ## Architecture
  ![](https://user-images.githubusercontent.com/77223336/169686401-02ef30d9-4c85-4f02-ac50-ad859b4b1d2b.png)
-
-## How to run 
