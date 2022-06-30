@@ -1,6 +1,22 @@
 # istio
 [이스티오](https://istio.io/)를 MSA 아키텍쳐에 적용하는 샘플 프로젝트
 
+### 적용기술 
+Dynamic service discovery
+Load balancing
+TLS termination
+Circuit breakers
+Timeout
+Health checks
+HPA (HorizontalPodAutoscaler) 
+Staged rollouts with %-based traffic split
+Fault injection
+Rich metrics (Prometheus/Grafana)
+Distributed Tracing (Jager) 
+Kiali
+Helm
+
+
 ### 요구사항   
 환자의 진료 상세 내역 조회 API   
 
