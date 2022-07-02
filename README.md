@@ -40,3 +40,4 @@
 <img width="1128" alt="스크린샷 2022-07-01 오전 2 07 45" src="https://user-images.githubusercontent.com/77223336/176736985-ef0518f8-4328-4678-b8c3-5f1e4e427665.png">
 
 
+발표자료 : https://future-bat-47e.notion.site/Service-Mesh-Istio-b1bd435ede714a7b9abd1ec39a7c974f
